@@ -18,14 +18,14 @@ module HookHelper
       begin
         Page.browser.screenshot.save file
         data = File.open(file, 'rb') { |f| f.read }
-        data = Base64.strict_encode64(data)
+        data = Base64.encode64(data)
       rescue Exception => e
         Watirmark.logger.warn("Screenshot was not taken due to an exception")
         Watirmark.logger.warn(e.to_s)
         Watirmark.logger.warn(e.backtrace)
       end
 
-      [data, 'image/png']
+      [data, 'image/png;base64']
     end
 
     def serialize_models
