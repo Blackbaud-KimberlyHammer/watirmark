@@ -96,8 +96,8 @@ describe Watirmark::WebPage::Controller do
   end
 
   specify 'should be able to create and use a new keyword' do
-    TestView.new.send("#{@keyword}=", 'test')
-    expect { @controller.send(@keyword).value == 'text' }.to be_true
+    TestView.new.__send__("#{@keyword}=", 'test')
+    expect { @controller.__send__(@keyword).value == 'text' }.to be_true
   end
 
   specify 'should be able to populate' do

@@ -98,7 +98,7 @@ require 'ostruct'
 
 class ModelOpenStruct < OpenStruct
   def update(x)
-    x.each_pair {|key, value| self.send "#{key}=", value}
+    x.each_pair {|key, value| self.__send__ "#{key}=", value}
     self
   end
 
@@ -114,7 +114,7 @@ class ModelOpenStruct < OpenStruct
 
   def to_h
     h = {}
-    keywords.each { |name| h[name.to_sym] = self.send name}
+    keywords.each { |name| h[name.to_sym] = self.__send__ name}
     h
   end
 

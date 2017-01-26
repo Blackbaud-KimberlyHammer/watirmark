@@ -76,7 +76,7 @@ module Watirmark
     def []=(key, value)
       override_method = "#{key}_value".to_sym
       if respond_to? override_method
-        @settings[key.to_sym] = self.send override_method, value
+        @settings[key.to_sym] = self.__send__ override_method, value
       else
         @settings[key.to_sym] = value
       end

@@ -220,7 +220,7 @@ module Watirmark
     end
 
     def sauce_config(sb)
-      caps              = Selenium::WebDriver::Remote::Capabilities.send(sb.to_sym)
+      caps              = Selenium::WebDriver::Remote::Capabilities.__send__(sb.to_sym)
       caps.browser_name = sb
       case sb
         when "firefox"

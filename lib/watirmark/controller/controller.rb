@@ -99,7 +99,7 @@ module Watirmark
 
       def call_method_if_exists(override)
         if respond_to?(override)
-          send(override)
+          __send__(override)
         else
           yield if block_given?
         end
@@ -123,8 +123,8 @@ module Watirmark
 
       def populate_keyword_value(keyed_element)
         call_method_if_exists("populate_#{keyed_element.keyword}") do
-#          @view.send(keyed_element.keyword).wait_until_present
-          @view.send("#{keyed_element.keyword}=", value(keyed_element))
+          @view.__send__(keyed_element.keyword).wait_until_present
+          @view.__send__("#{keyed_element.keyword}=", value(keyed_element))
         end
       end
 
@@ -136,7 +136,7 @@ module Watirmark
       end
 
       def keyword_value(keyed_element)
-        call_method_if_exists("#{keyed_element.keyword}_value") {@model.send(keyed_element.keyword)}
+        call_method_if_exists("#{keyed_element.keyword}_value") {@model.__send__(keyed_element.keyword)}
       end
 
       def before_process_page(keyed_element)
@@ -184,7 +184,7 @@ module Watirmark
       # convert these to models fo now
       def hash_to_model(hash)
         model = ModelOpenStruct.new
-        hash.each_pair { |key, value| model.send "#{key}=", value }
+        hash.each_pair { |key, value| model.__send__ "#{key}=", value }
         model
       end
 

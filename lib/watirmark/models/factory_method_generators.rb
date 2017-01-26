@@ -5,7 +5,7 @@ module Watirmark
       # Act like an OpenStruct so we can be backward compatible with older controllers
       def method_missing(key, *args, &block)
         create_getters_and_setters strip_equals_from_method_name(key)
-        send key, *args
+        __send__ key, *args
       end
 
       private
@@ -36,7 +36,7 @@ module Watirmark
       end
 
       def set_default_value key
-        send("#{key}=", get_default_value(key)) if send(key).nil?
+        __send__("#{key}=", get_default_value(key)) if __send__(key).nil?
       end
 
       def get_default_value(key)

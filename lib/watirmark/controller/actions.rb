@@ -155,7 +155,7 @@ module Watirmark
       catch :stop_condition_met do
         begin
           Watirmark::Session.instance.stop_condition_block = block
-          send(method)
+          __send__(method)
         ensure
           Watirmark::Session.instance.stop_condition_block = Proc.new {}
         end
@@ -173,13 +173,13 @@ module Watirmark
     end
 
     def run_callback_method name
-      send name if respond_to?(name)
+      __send__ name if respond_to?(name)
     end
 
     def execute_actions(actions, block)
       actions.each do |action|
         run_callback_method :before_each
-        send(action, &block)
+        __send__(action, &block)
         run_callback_method :after_each
       end
     end

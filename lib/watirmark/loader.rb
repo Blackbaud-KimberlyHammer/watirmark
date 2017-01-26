@@ -29,7 +29,7 @@ module Watirmark
       namespaces = mod.split('::')
       m = Kernel.const_get(namespaces.shift)
       m = namespaces.inject(m){|result, ns| result.const_get(ns)}
-      m.send(:autoload, klass.to_sym, path)
+      m.__send__(:autoload, klass.to_sym, path)
     end
     private :_autoload_
 

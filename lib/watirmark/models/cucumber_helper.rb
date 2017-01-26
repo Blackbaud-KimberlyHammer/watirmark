@@ -34,7 +34,7 @@ module Watirmark
           while result =~ method_regexp #get value from models
             model_name = $1
             method     = $2
-            value = DataModels[model_name].send method.to_sym
+            value = DataModels[model_name].__send__ method.to_sym
             result.sub!(method_regexp, value.to_s)
           end
         elsif text =~ model_regexp
@@ -48,7 +48,7 @@ module Watirmark
         cuke_table.rows_hash.each do |key, value|
           method_chain = key.to_s.split('.')
           method = method_chain.pop
-          method_chain.inject(self) { |obj, m| obj.send m}.send "#{method}=", format_value(value)
+          method_chain.inject(self) { |obj, m| obj.__send__ m}.__send__ "#{method}=", format_value(value)
         end
         Watirmark.logger.info "Updated #{inspect}"
         self

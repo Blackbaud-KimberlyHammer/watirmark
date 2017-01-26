@@ -99,7 +99,7 @@ module Watirmark
 
 
       def includes? hash
-        hash.each_pair { |key, value| return false unless send("#{key}") == value }
+        hash.each_pair { |key, value| return false unless __send__("#{key}") == value }
         true
       end
 
@@ -107,7 +107,7 @@ module Watirmark
       # Update the model using the provided hash
       def update hash
         remove_empty_entries hash
-        hash.each_pair { |key, value| send "#{key}=", value }
+        hash.each_pair { |key, value| __send__ "#{key}=", value }
         self
       end
       alias :has :update
@@ -115,7 +115,7 @@ module Watirmark
       # Update the model using the provided hash but only if exists (TODO: may not be needed any more)
       def update_existing_members hash
         remove_empty_entries hash
-        hash.each_pair { |key, value| send "#{key}=", value if respond_to? "#{key}=".to_sym }
+        hash.each_pair { |key, value| __send__ "#{key}=", value if respond_to? "#{key}=".to_sym }
         self
       end
 
@@ -128,7 +128,7 @@ module Watirmark
         @keywords.each do |key|
           begin
             name = key
-            value = send(key)
+            value = __send__(key)
             if value.kind_of?(Proc)
               h[name] = instance_eval(&value) unless value.nil?
             else

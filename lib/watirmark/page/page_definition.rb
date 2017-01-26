@@ -176,11 +176,11 @@ module Watirmark
     end
 
     def update_subclass_variables(klass, method, default)
-      var = self.send(method)
+      var = self.__send__(method)
       if var
-        klass.send("#{method}=", default) unless klass.send(method)
+        klass.__send__("#{method}=", default) unless klass.__send__(method)
         var.each_key do |k|
-          klass.send(method).store(k, var.fetch(k).dup)
+          klass.__send__(method).store(k, var.fetch(k).dup)
         end
       end
     end
