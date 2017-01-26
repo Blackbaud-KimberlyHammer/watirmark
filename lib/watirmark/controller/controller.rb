@@ -123,7 +123,7 @@ module Watirmark
 
       def populate_keyword_value(keyed_element)
         call_method_if_exists("populate_#{keyed_element.keyword}") do
-          @view.__send__(keyed_element.keyword).wait_until_present
+          #@view.__send__(keyed_element.keyword).wait_until_present
           @view.__send__("#{keyed_element.keyword}=", value(keyed_element))
         end
       end
