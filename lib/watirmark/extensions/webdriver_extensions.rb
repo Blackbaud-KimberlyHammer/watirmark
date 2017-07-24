@@ -66,7 +66,7 @@ module Watir
 
     def column(what)
       column = 0
-      parent.th(:text => what).when_present.parent.cells.each do |cell|
+      parent.th(:text => what).parent.cells.each do |cell|
         if what.kind_of? String
           return self[column] if cell.text == what
         else
