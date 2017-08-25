@@ -1,4 +1,4 @@
-require 'watir-webdriver/extensions/select_text'
+require 'watir/extensions/select_text'
 
 module Watir
 
@@ -66,7 +66,7 @@ module Watir
 
     def column(what)
       column = 0
-      parent.th(:text => what).when_present.parent.cells.each do |cell|
+      parent.th(:text => what).parent.cells.each do |cell|
         if what.kind_of? String
           return self[column] if cell.text == what
         else
@@ -111,38 +111,38 @@ module Watir
 
   class Element
 
-    def next_sibling
-      e = locate_dom_element(:getNextSibling)
-      e.nil? ? element(xpath: './following-sibling::*') : e
-    end
-    alias_method :nextsibling, :next_sibling
+    # def next_sibling
+    #   e = locate_dom_element(:getNextSibling)
+    #   e.nil? ? element(xpath: './following-sibling::*') : e
+    # end
+    # alias_method :nextsibling, :next_sibling
+    #
+    # def previous_sibling
+    #   e = locate_dom_element(:getPreviousSibling)
+    #   e.nil? ? element(xpath: './preceding-sibling::*') : e
+    # end
+    # alias_method :prev_sibling, :previous_sibling
+    # alias_method :prevsibling, :previous_sibling
+    #
+    # def locate_dom_element(method)
+    #   assert_exists
+    #
+    #   e = element_call1 { execute_atom method, @element }
+    #
+    #   if e.kind_of?(Selenium::WebDriver::Element)
+    #     Watir.element_class_for(e.tag_name.downcase).new(@parent, :element => e)
+    #   end
+    # end
 
-    def previous_sibling
-      e = locate_dom_element(:getPreviousSibling)
-      e.nil? ? element(xpath: './preceding-sibling::*') : e
-    end
-    alias_method :prev_sibling, :previous_sibling
-    alias_method :prevsibling, :previous_sibling
-
-    def locate_dom_element(method)
-      assert_exists
-
-      e = element_call { execute_atom method, @element }
-
-      if e.kind_of?(Selenium::WebDriver::Element)
-        Watir.element_class_for(e.tag_name.downcase).new(@parent, :element => e)
-      end
-    end
-
-    alias_method :old_element_call, :element_call
-    def element_call &block
-      old_element_call &block
-    rescue Selenium::WebDriver::Error::UnknownError => ex
-      raise unless ex.message.include?("Element is not clickable at point")
-      reset!
-      assert_exists
-      retry
-    end
+    # alias_method :old_element_call, :element_call
+    # def element_call (exist_check = :wait_for_exists)
+    #   old_element_call exist_check
+    # rescue Selenium::WebDriver::Error::UnknownError => ex
+    #   raise unless ex.message.include?("Element is not clickable at point")
+    #   reset!
+    #   assert_exists
+    #   retry
+    # end
 
     alias_method :old_text, :text
     def text
