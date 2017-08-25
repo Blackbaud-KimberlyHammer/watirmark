@@ -3,9 +3,9 @@ source "https://rubygems.org"
 gemspec
 
 group :development do
-  gem 'watir-webdriver'
+  gem 'watir'
   gem 'rdoc'
-  gem 'rspec', '2.99'
+  gem 'rspec', '~>3.6'
   gem 'rake'
   gem 'bundler'
   gem 'mocha', '0.12.8', :require => false
