@@ -9,7 +9,7 @@ group :development do
   gem 'rake'
   gem 'bundler'
   gem 'mocha', '0.12.8', :require => false
-  gem 'cucumber'
+  gem 'cucumber', '2.99.0'
   gem 'gherkin'
   gem 'rspec-mocks'
   gem 'simplecov'
