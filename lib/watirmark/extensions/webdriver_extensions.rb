@@ -54,8 +54,8 @@ module Watir
   # end
 
   module JSSnippets
-    execute_js[:getPreviousSibling] = File.read(File.expand_path("../js_snippets/getPreviousSibling.js", __FILE__))
-    execute_js[:getNextSibling] = File.read(File.expand_path("../js_snippets/getNextSibling.js", __FILE__))
+      ATOMS[:getPreviousSibling] = File.read(File.expand_path("../atoms/getPreviousSibling.js", __FILE__))
+      ATOMS[:getNextSibling] = File.read(File.expand_path("../atoms/getNextSibling.js", __FILE__))
   end
 
   class Table < HTMLElement
