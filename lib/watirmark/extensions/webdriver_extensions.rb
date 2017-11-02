@@ -53,11 +53,6 @@ module Watir
   #   ATOMS[:getNextSibling] = File.read(File.expand_path("../atoms/getNextSibling.js", __FILE__))
   # end
 
-  module JSSnippets
-      ATOMS[:getPreviousSibling] = File.read(File.expand_path("../atoms/getPreviousSibling.js", __FILE__))
-      ATOMS[:getNextSibling] = File.read(File.expand_path("../atoms/getNextSibling.js", __FILE__))
-  end
-
   class Table < HTMLElement
     def each
       rows.each { |x| yield x }
