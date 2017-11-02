@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.executables = 'watirmark'
   s.require_paths = %w(lib)
   # s.add_dependency('watir', '= 6.7')
-  s.add_dependency('watir', '= 6.7.3')
+  s.add_dependency('watir', '= 6.8')
   s.add_dependency('american_date', '~> 1.1.0')
   s.add_dependency('logger', '~> 1.2.8')
   s.add_dependency('uuid', '~> 2.3.7')
