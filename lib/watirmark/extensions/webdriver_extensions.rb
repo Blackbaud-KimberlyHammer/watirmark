@@ -1,4 +1,4 @@
-require 'watir/extensions/select_text'
+# require 'watir/extensions/select_text'
 
 module Watir
 
@@ -48,10 +48,10 @@ module Watir
     end
   end
 
-  module Atoms
-    ATOMS[:getPreviousSibling] = File.read(File.expand_path("../atoms/getPreviousSibling.js", __FILE__))
-    ATOMS[:getNextSibling] = File.read(File.expand_path("../atoms/getNextSibling.js", __FILE__))
-  end
+  # module Atoms
+  #   ATOMS[:getPreviousSibling] = File.read(File.expand_path("../atoms/getPreviousSibling.js", __FILE__))
+  #   ATOMS[:getNextSibling] = File.read(File.expand_path("../atoms/getNextSibling.js", __FILE__))
+  # end
 
   class Table < HTMLElement
     def each
